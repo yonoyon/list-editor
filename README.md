@@ -1,4 +1,4 @@
 # list-editor
 A program to challenge myself. 
 
-Learning python as my first language, so.. trying stuff out.
+Learning python, so.. trying stuff out. Will get back to this later. 
