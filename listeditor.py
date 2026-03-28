@@ -1,46 +1,42 @@
 import random
 
-print("You can freely interact with a list using this program. Input 1 for viewing the list, and 2 for editing.")
-print("By inputting quit, you will always quit the progam, safely.")
-
-userinput = input("Input here: ")
-list1 = []
-
 def start(): #start program
-    startmsg()
     check_fuin()
 
 def startmsg(): #start program msg
-    print("Starting program")
+    print("Starting program... ")
 def quitmsg(): #quit program msg
     print("Exiting program... ")
 def invalidinputmsg(): #outputs invalid input message
     print("Invalid input. ")
 
 def check_fuin(): #first function that handles input at start - check_fi
-    if userinput == "1":
+    if uin == "view" or uin == "v" or uin == "1":
         view()
-    elif userinput == "2":
+    elif uin == "edit" or uin == "e" or uin == "2":
         check_fxe()
-    elif userinput == "quit":
+    elif uin == "quit" or uin == "q" or uin == "3":
         quitmsg()
     else:
         invalidinputmsg()
+
 def view(): #for viewing, sends to handling editing func if needed - view?
     print(list1)
-    view_ec = input("Would you like to edit this list? (y/n): ")
-    if view_ec == "y":
+    view_uin = input("Would you like to edit this list? (yes/no): ")
+    if view_uin == "yes" or view_uin == "y" or view_uin == "1":
         check_fxe()
-    elif view_ec == "n":
+    elif view_uin == "no" or view_uin == "n" or view_uin == "2" or view_uin == "quit" or view_uin == "q":
         quitmsg()
 def check_fxe(): #handling editing func, sends over to respective func #check_fxe
     if len(list1) == 0:
         print("List empty. ")
-        check_fxe_input = int(input("Using random numbers to fill is recommended. Choosing them yourself is possible as well, input 1 or 2 respectively: "))
-        if check_fxe_input == 1:
+        check_fxe_uin = input("Using random numbers to fill is recommended. Choosing them yourself is possible as well, input random or choose respectively: ")
+        if check_fxe_uin == "random" or check_fxe_uin == "rndm" or check_fxe_uin == "r" or check_fxe_uin == "1":
             fill_rndm()
-        elif check_fxe_input == 2:
+        elif check_fxe_uin == "choose" or check_fxe_uin == "c" or check_fxe_uin == "2":
             fill_uin()
+        elif check_fxe_uin == "quit" or check_fxe_uin == "q":
+            quitmsg()
         else:
             invalidinputmsg()
     else:
@@ -54,7 +50,8 @@ def fill_rndm(): #fills list w random numbers fill_rndm
 def fill_uin(): #uses input to fill list fill_uin
     listlen = int(input("Input length of list: "))
     if listlen < 0:
-        invalidinputmsg()
+        print("Length of list must be positive. ")
+        fill_uin()
     elif listlen == 0:
         check_fxe()
     else:
@@ -64,18 +61,20 @@ def fill_uin(): #uses input to fill list fill_uin
 
 def edit(): #first editing func, sends over to respective func edit
     print("List: " , list1)
-    edit_input = int(input("Add/Remove/Clear/Cancel (1/2/3/4)"))
-    if edit_input == 1:
+    edit_uin = input("Choose whether to add, remove, or clear: ")
+    if edit_uin == "add" or edit_uin == "a" or edit_uin == "1":
         edit_add()
-    elif edit_input == 2:
+    elif edit_uin == "remove" or edit_uin == "r" or edit_uin == "2":
         edit_remove()
-    elif edit_input == 3:
+    elif edit_uin == "clear" or edit_uin == "c" or edit_uin == "3":
         edit_clear()
+    elif edit_uin == "quit" or edit_uin == "q":
+        quitmsg()
     else:
-        pass
+        invalidinputmsg()
 def edit_add(): #editing func for adding numbers (input) edit_add
-    na = int(input("Input number to add: ")) 
-    list1.append(na)
+    n = int(input("Input number to add: ")) 
+    list1.append(n)
     check_fxe()
 def edit_remove(): #editing func for removing numbers, (last number) edit_remove
     list1.pop(len(list1) - 1)
@@ -83,5 +82,14 @@ def edit_remove(): #editing func for removing numbers, (last number) edit_remove
 def edit_clear(): #editing func for clearing edit_clear
     list1.clear()
     check_fxe()
+
+startmsg()
+
+print("You can freely interact with a list using this program. Input view to view the list or edit to edit. ")
+print("All input fields are intuitive. Simply input the command name, or its number. ")
+print("Input quit at any time to exit program. ")
+
+uin = input("Input here: ")
+list1 = []
 
 start()
